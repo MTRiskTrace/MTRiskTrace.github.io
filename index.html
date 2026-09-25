@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#33214f">
+  <meta name="description" content="MTRiskTrace is a bilingual benchmark for tracing when and why tool-using agents become unsafe across multi-turn interactions.">
+  <meta name="keywords" content="MTRiskTrace, agent safety, multi-turn attacks, trajectory evaluation, benchmark, Nanjing University">
+  <meta name="author" content="Sijia Jing, Hongye Cao, Hongyu Fang, Xiaotong Zhang, Meng Fang, Fan Feng, Boyan Wang, Tianpei Yang, Jing Huo, Yang Gao">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="MTRiskTrace · Nanjing University">
+  <meta property="og:title" content="When and Why Do Agents Become Unsafe? | MTRiskTrace">
+  <meta property="og:description" content="A trajectory-aware benchmark for multi-turn agent safety evaluation.">
+  <meta name="citation_title" content="When and Why Do Agents Become Unsafe? A Trajectory-Aware Benchmark for Multi-Turn Agent Safety Evaluation">
+  <meta name="citation_author" content="Jing, Sijia">
+  <meta name="citation_author" content="Cao, Hongye">
+  <meta name="citation_author" content="Fang, Hongyu">
+  <meta name="citation_author" content="Zhang, Xiaotong">
+  <meta name="citation_author" content="Fang, Meng">
+  <meta name="citation_author" content="Feng, Fan">
+  <meta name="citation_author" content="Wang, Boyan">
+  <meta name="citation_author" content="Yang, Tianpei">
+  <meta name="citation_author" content="Huo, Jing">
+  <meta name="citation_author" content="Gao, Yang">
+  <title>MTRiskTrace — When and Why Do Agents Become Unsafe?</title>
+  <link rel="icon" type="image/svg+xml" href="static/images/mtrisktrace-favicon.svg">
+  <link rel="stylesheet" href="static/css/index.css?v=20260925-1">
+  <script src="static/js/navigation.js?v=20260925-1" defer></script>
+  <script src="static/js/leaderboard.js?v=20260925-1" defer></script>
+  <script src="static/js/index.js?v=20260925-1" defer></script>
+</head>
+<body>
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-trace" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      <div class="hero-inner">
+        <div class="hero-kicker"><img src="static/images/mtrisktrace-hero.png" alt="MTRiskTrace" width="2172" height="724"></div>
+        <h1 id="page-title">When and why do agents <span>become unsafe?</span></h1>
+        <p class="hero-subtitle">A Trajectory-Aware Benchmark for Multi-Turn Agent Safety Evaluation</p>
+        <p class="hero-submission">ICLR 2027 Anonymous submission</p>
+      </div>
+      <div class="hero-footer"><a class="hero-scroll-link" href="#chapter-01">SCROLL TO EXPLORE <b aria-hidden="true">↓</b></a></div>
+    </section>
+
+    <nav class="chapter-toc" aria-label="Page sections">
+      <button class="chapter-toc-toggle" type="button" aria-expanded="false" aria-controls="chapter-toc-list"><span class="chapter-toc-current">01 · Benchmark</span><span aria-hidden="true">☰</span></button>
+      <ol id="chapter-toc-list">
+        <li><a class="is-active" href="#chapter-01" aria-current="location"><span>01</span><small>Benchmark</small></a></li>
+        <li><a href="#chapter-02"><span>02</span><small>Framework</small></a></li>
+        <li><a href="#chapter-03"><span>03</span><small>Method</small></a></li>
+        <li><a href="#chapter-04"><span>04</span><small>Evaluation</small></a></li>
+        <li><a href="#chapter-05"><span>05</span><small>Case study</small></a></li>
+      </ol>
+    </nav>
+
+    <section class="chapter chapter-tinted section-shell" id="chapter-01" aria-labelledby="chapter-one">
+      <div class="section-body">
+        <div class="chapter-heading"><p class="section-label">01 / Benchmark anatomy</p><h2 id="chapter-one">A benchmark built for realistic context.</h2><p>Cases span ordinary operational settings, two risk families, and tools that can read, communicate, or change state. The varied context matters because an agent may look safe early in a conversation and fail later.</p></div>
+        <figure class="exhibit exhibit-featured exhibit-reduced"><button class="exhibit-image" type="button" data-full-image="static/images/exhibits/figure-02.png" data-image-title="Figure 1 · Dataset composition" aria-label="Enlarge Figure 1"><img src="static/images/exhibits/figure-02.png" alt="Charts showing scenario distribution, dialogue turn distribution, and dataset composition" fetchpriority="high"></button><figcaption><span class="exhibit-id">FIGURE 01</span><span><strong>Dataset composition.</strong> The 1,100 cases cover 125 scenarios across 11 categories, with Chinese and English dialogues of three to five turns.</span><button class="zoom-hint" type="button">Enlarge ↗</button></figcaption></figure>
+        <div class="editorial-note"><span>DATASET SCOPE</span><p>Across 125 scenarios, the benchmark combines content and behavioral risks with five tool categories and six multi-turn attack strategies.</p></div>
+      </div>
+    </section>
+
+    <section class="chapter section-shell" id="chapter-02" aria-labelledby="chapter-two">
+      <div class="section-body">
+        <div class="chapter-heading"><p class="section-label">02 / The framework</p><h2 id="chapter-two">From whether to when and why</h2><p>Rather than scoring only the last response, the benchmark connects each safety judgment to the first observable risk event and its underlying capability failure.</p></div>
+        <figure class="exhibit exhibit-featured exhibit-reduced"><button class="exhibit-image" type="button" data-full-image="static/images/exhibits/figure-01.png" data-image-title="Figure 2 · MTRiskTrace overview" aria-label="Enlarge Figure 2"><img src="static/images/exhibits/figure-01.png" alt="MTRiskTrace pipeline: dataset construction, multi-turn rollout, and trajectory safety diagnosis" loading="lazy"></button><figcaption><span class="exhibit-id">FIGURE 02</span><span><strong>The full MTRiskTrace pipeline.</strong> Bilingual attack cases are constructed, target agents are rolled out, and unsafe trajectories are diagnosed at the first risk step.</span><button class="zoom-hint" type="button">Enlarge ↗</button></figcaption></figure>
+        <div class="editorial-note"><span>THREE DIAGNOSES</span><p><b>Safety judgment</b> establishes whether a trajectory is unsafe. <b>Risk localization</b> finds the first observable unsafe step. <b>Capability diagnosis</b> explains the failure through four safety dimensions.</p></div>
+        <figure class="exhibit"><button class="exhibit-image" type="button" data-full-image="static/images/exhibits/table-01.webp" data-image-title="Table 1 · Benchmark comparison" aria-label="Enlarge Table 1"><img src="static/images/exhibits/table-01.webp" alt="Comparison of agent safety benchmarks by multi-turn attack coverage, cross-harness setting, risk localization, and capability diagnosis" loading="lazy"></button><figcaption><span class="exhibit-id">TABLE 01</span><span><strong>What existing benchmarks measure.</strong> The paper positions MTRiskTrace against prior agent-safety benchmarks across attack setting and diagnostic depth.</span><button class="zoom-hint" type="button">Enlarge ↗</button></figcaption></figure>
+      </div>
+    </section>
+
+    <section class="chapter chapter-tinted section-shell" id="chapter-03" aria-labelledby="chapter-three">
+      <div class="section-body">
+        <div class="chapter-heading"><p class="section-label">03 / Construction &amp; annotation</p><h2 id="chapter-three">Build the case. Trace the failure.</h2><p>Each case begins with a scenario, target risk, tool kit, and attack strategy. Human review then anchors the safety label to evidence in the trajectory rather than an assumed intent.</p></div>
+        <figure class="exhibit exhibit-featured"><button class="exhibit-image" type="button" data-full-image="static/images/exhibits/figure-03.png" data-image-title="Figure 3 · Dataset construction" aria-label="Enlarge Figure 3"><img src="static/images/exhibits/figure-03.png" alt="Flowchart of case specification, trajectory generation, human annotation, and an illustrative case" loading="lazy"></button><figcaption><span class="exhibit-id">FIGURE 03</span><span><strong>Construction and human verification.</strong> Candidate trajectories progress through generation, annotation, and adjudication.</span><button class="zoom-hint" type="button">Enlarge ↗</button></figcaption></figure>
+        <div class="subsection-heading"><span>THE LABELS</span><h3>Evidence before attribution</h3></div>
+        <div class="capability-list" aria-label="Four capability dimensions"><div><b>C1</b><span>Risk understanding &amp; planning</span></div><div><b>C2</b><span>Tool-use boundary control</span></div><div><b>C3</b><span>Untrusted information handling</span></div><div><b>C4</b><span>Cross-turn safety consistency</span></div></div>
+      </div>
+    </section>
+
+    <section class="chapter section-shell" id="chapter-04" aria-labelledby="chapter-four">
+      <div class="section-body">
+        <div class="chapter-heading"><p class="section-label">04 / Evaluation</p><h2 id="chapter-four">The same benchmark. Different failure paths.</h2><p>Eleven models are evaluated across three agent harnesses. Attack success rate shows the outcome; the accompanying analyses reveal when risk appears and which safety boundary is most often crossed.</p></div>
+        <div class="result-callout"><span>LOWER ASR IS BETTER</span><p>Under the common OpenClaw setting, <strong>Claude Sonnet 4.6</strong> has the lowest overall attack success rate (<strong>8.55%</strong>); <strong>Llama 3.3-70B</strong> has the highest (<strong>87.34%</strong>).</p></div>
+        <figure class="leaderboard exhibit" aria-labelledby="leaderboard-title">
+          <div class="leaderboard-panel">
+            <div class="leaderboard-heading">
+              <div><span class="leaderboard-eyebrow">BENCHMARK RESULTS</span><h3 id="leaderboard-title">Attack success leaderboard</h3><p>Lower attack success rate means a safer result.</p></div>
+              <span class="leaderboard-direction" aria-hidden="true">ASR <b>↓</b></span>
+            </div>
+            <div class="leaderboard-controls">
+              <div class="leaderboard-filter" role="group" aria-label="Agent harness">
+                <button type="button" data-leaderboard-harness="all" aria-pressed="true">All</button>
+                <button type="button" data-leaderboard-harness="OpenClaw" aria-pressed="false">OpenClaw</button>
+              </div>
+              <label class="leaderboard-sort" for="leaderboard-metric">Rank by <select id="leaderboard-metric"><option value="overall">Overall ASR</option><option value="a1">A1</option><option value="a2">A2</option><option value="a3">A3</option><option value="a4">A4</option><option value="a5">A5</option><option value="a6">A6</option></select></label>
+            </div>
+            <div class="leaderboard-scroll" tabindex="0" aria-label="Leaderboard table; scroll horizontally to see all strategies">
+              <table class="leaderboard-table">
+                <caption class="visually-hidden">Model ranking by attack success rate, lower is better</caption>
+                <thead><tr><th scope="col">Rank</th><th scope="col">Model <span class="leaderboard-col-sub">/ Harness</span></th><th scope="col" data-leaderboard-column="a1">A1</th><th scope="col" data-leaderboard-column="a2">A2</th><th scope="col" data-leaderboard-column="a3">A3</th><th scope="col" data-leaderboard-column="a4">A4</th><th scope="col" data-leaderboard-column="a5">A5</th><th scope="col" data-leaderboard-column="a6">A6</th><th scope="col" data-leaderboard-column="overall">Overall</th></tr></thead>
+                <tbody id="leaderboard-body"></tbody>
+              </table>
+            </div>
+            <p class="leaderboard-note" id="leaderboard-note" aria-live="polite">Showing 13 runs across all harnesses · ranked by Overall ASR, lowest first. A1–A6 are attack strategies.</p>
+          </div>
+          <figcaption><span class="exhibit-id">TABLE 02</span><span><strong>Attack success rate by model and strategy.</strong> Select a strategy to reorder the ranking; all published scores remain visible.</span></figcaption>
+        </figure>
+        <figure class="exhibit exhibit-featured"><button class="exhibit-image" type="button" data-full-image="static/images/exhibits/figure-04.png" data-image-title="Figure 4 · Safety diagnosis by dimension" aria-label="Enlarge Figure 4"><img src="static/images/exhibits/figure-04.png" alt="Heatmap of attack success rates, risk onset localization, and capability diagnosis across models and task dimensions" loading="lazy"></button><figcaption><span class="exhibit-id">FIGURE 04</span><span><strong>Safety by risk type, tool, strategy, and language.</strong> The pooled heatmap connects attack success to event-level localization and capability labels.</span><button class="zoom-hint" type="button">Enlarge ↗</button></figcaption></figure>
+        <div class="exhibit-pair">
+          <figure class="exhibit"><button class="exhibit-image" type="button" data-full-image="static/images/exhibits/figure-05.png" data-image-title="Figure 5 · Risk onset and capability diagnosis" aria-label="Enlarge Figure 5"><img src="static/images/exhibits/figure-05.png" alt="Risk onset by turn and event type, with capability diagnosis percentages across models" loading="lazy"></button><figcaption><span class="exhibit-id">FIGURE 05</span><span><strong>When risk starts, and why.</strong> First unsafe events cluster in later turns; capability labels reveal recurring failure patterns.</span><button class="zoom-hint" type="button">Enlarge ↗</button></figcaption></figure>
+          <figure class="exhibit"><button class="exhibit-image" type="button" data-full-image="static/images/exhibits/figure-06.png" data-image-title="Figure 6 · Tool category analysis" aria-label="Enlarge Figure 6"><img src="static/images/exhibits/figure-06.png" alt="Radar and bar charts comparing attack success across tool categories and agent harnesses" loading="lazy"></button><figcaption><span class="exhibit-id">FIGURE 06</span><span><strong>Tool context changes exposure.</strong> Risk differs across tool categories and across harnesses using the same model.</span><button class="zoom-hint" type="button">Enlarge ↗</button></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter chapter-tinted section-shell" id="chapter-05" aria-labelledby="chapter-five">
+      <div class="section-body">
+        <div class="chapter-heading"><p class="section-label">05 / A trajectory in focus</p><h2 id="chapter-five">The boundary was clear. Then it was abandoned.</h2><p>A case study illustrates the value of tracing: an agent initially maintains an approval requirement, then performs a state-changing action in a later turn without valid authorization.</p></div>
+        <figure class="exhibit exhibit-featured"><button class="exhibit-image" type="button" data-full-image="static/images/exhibits/figure-07.png" data-image-title="Figure 7 · Case study" aria-label="Enlarge Figure 7"><img src="static/images/exhibits/figure-07.png" alt="Multi-turn case study showing a previously upheld approval constraint being abandoned and the resulting safety diagnosis" loading="lazy"></button><figcaption><span class="exhibit-id">FIGURE 07</span><span><strong>One interaction, three answers.</strong> The case is unsafe; the first risky action is localized to a later tool call; the diagnosis points to a cross-turn safety failure.</span><button class="zoom-hint" type="button">Enlarge ↗</button></figcaption></figure>
+        <p class="closing-thought">To evaluate an agent’s safety, we need to see the path it took—not only the response it left behind.</p>
+      </div>
+    </section>
+
+  </main>
+  <dialog id="image-dialog" aria-label="Enlarged paper figure or table"><form method="dialog"><button class="dialog-close" aria-label="Close enlarged image" type="submit">Close ×</button></form><p id="dialog-title"></p><img id="dialog-image" alt=""></dialog>
+</body>
+</html>
