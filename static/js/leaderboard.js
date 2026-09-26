@@ -8,7 +8,7 @@
     { harness: "OpenClaw", model: "GPT-5.5", a1: 8.22, a2: 6.94, a3: 14.12, a4: 5.78, a5: 7.96, a6: 7.65, overall: 11.27 },
     { harness: "OpenClaw", model: "Grok 4.3", a1: 34.25, a2: 36.46, a3: 33.33, a4: 35.31, a5: 37.61, a6: 36.39, overall: 36.73 },
     { harness: "OpenClaw", model: "Kimi K2.6", a1: 64.84, a2: 54.86, a3: 57.06, a4: 53.13, a5: 51.77, a6: 57.49, overall: 57.09 },
-    { harness: "OpenClaw", model: "Llama 3.3-70B", a1: 89.11, a2: 92.80, a3: 88.24, a4: 93.91, a5: 92.46, a6: 86.77, overall: 87.34 },
+    { harness: "OpenClaw", model: "Llama 3.3-70B", a1: 89.11, a2: 92.80, a3: 88.24, a4: 93.91, a5: 92.46, a6: 86.77, overall: 87.18 },
     { harness: "OpenClaw", model: "MiMo-V2.5-Pro", a1: 63.93, a2: 60.59, a3: 58.19, a4: 62.60, a5: 63.72, a6: 65.44, overall: 62.18 },
     { harness: "OpenClaw", model: "MiniMax-M2.7", a1: 71.69, a2: 58.33, a3: 51.98, a4: 59.71, a5: 54.65, a6: 65.44, overall: 62.45 },
     { harness: "OpenClaw", model: "Qwen3.5-Plus", a1: 31.96, a2: 32.29, a3: 24.29, a4: 31.78, a5: 30.97, a6: 32.11, overall: 30.91 },

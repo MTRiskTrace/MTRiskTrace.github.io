@@ -19,7 +19,7 @@ test("leaderboard preserves the published Table 2 runs and scores", () => {
     ["GPT-5.5", 5.02, 5.73, 6.21, 5.14, 5.31, 5.81, 6.09],
   );
   const llama = leaderboard.entries.find((entry) => entry.model === "Llama 3.3-70B");
-  assert.equal(llama.overall, 87.34);
+  assert.equal(llama.overall, 87.18);
   assert.equal(llama.a4, 93.91);
 });
 
